@@ -1,24 +1,28 @@
-#!/usr/bin/python3
-"""Defines a base geometry class BaseGeometry"""
+===============================
+How to use 7-base_geometry.py
+===============================
 
+>>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+>>> bg = BaseGeometry()
 
-class BaseGeometry:
-    """Class representing base geometry"""
+>>> bg.integer_validator("my_int", 12)
 
-    def area(self):
-        """Raises an Exception because area is not implemented"""
-        raise Exception("area() is not implemented")
+>>> bg.integer_validator("name", "John")
+Traceback (most recent call last):
+    ...
+TypeError: name must be an integer
 
-    def integer_validator(self, name, value):
-        """Validates that value is a positive integer
-        Args:
-            name (str): The name of the parameter.
-            value (int): The parameter to validate.
-        Raises:
-            TypeError: If value is not an integer.
-            ValueError: If value is <= 0.
-        """
-        if type(value) is not int:
-            raise TypeError("{} must be an integer".format(name))
-        if value <= 0:
-            raise ValueError("{} must be greater than 0".format(name))
+>>> bg.integer_validator("age", 0)
+Traceback (most recent call last):
+    ...
+ValueError: age must be greater than 0
+
+>>> bg.integer_validator("distance", -4)
+Traceback (most recent call last):
+    ...
+ValueError: distance must be greater than 0
+
+>>> bg.area()
+Traceback (most recent call last):
+    ...
+Exception: area() is not implemented
