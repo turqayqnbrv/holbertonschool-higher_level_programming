@@ -1,61 +1,63 @@
 #!/usr/bin/python3
-"""Module containing abstract Shape class and its implementations."""
+"""Module containing Shape class and its inheritances"""
 from abc import ABC, abstractmethod
-import math
+from math import pi
 
 
 class Shape(ABC):
-    """Abstract base class for shapes."""
+    """The Shape class"""
 
     @abstractmethod
     def area(self):
-        """Abstract method to calculate area."""
+        """Method for area"""
         pass
 
     @abstractmethod
     def perimeter(self):
-        """Abstract method to calculate perimeter."""
+        """Method for perimeter"""
         pass
 
 
 class Circle(Shape):
-    """Circle class that inherits from Shape."""
+    """The Circle class inherited from Shape"""
 
     def __init__(self, radius):
-        """Initialize Circle with a radius."""
-        self.radius = radius
+        """Initialization wih radius"""
+        self.radius = abs(radius)
 
     def area(self):
-        """Calculate and return the area of the circle."""
-        return math.pi * (self.radius ** 2)
+        """Returning duck area"""
+        return pi * self.radius ** 2
 
     def perimeter(self):
-        """Calculate and return the perimeter."""
-        return 2 * math.pi * self.radius
+        """Returning perimeter area"""
+        return pi * self.radius * 2
 
 
 class Rectangle(Shape):
-    """Rectangle class that inherits from Shape."""
+    """The Rectangle class inherited from Shape"""
 
     def __init__(self, width, height):
-        """Initialize Rectangle with width and height."""
+        """Initialization wih width and height"""
         self.width = width
         self.height = height
 
     def area(self):
-        """Calculate and return the area of the rectangle."""
+        """Returning duck area"""
         return self.width * self.height
 
     def perimeter(self):
-        """Calculate and return the perimeter."""
+        """Returning perimeter area"""
         return 2 * (self.width + self.height)
 
 
-def shape_info(shape):
-    """Print the area and perimeter of a shape using duck typing."""
-    try:
-        print("Area: {}".format(shape.area()))
-        print("Perimeter: {}".format(shape.perimeter()))
-    except (AttributeError, TypeError):
-        # This handles cases where the object is not a 'duck'
-        return
+def shape_info(obj):
+    """Function to give shape info"""
+
+    # Calculating the area and perimeter
+    area = obj.area()
+    perimeter = obj.perimeter()
+
+    # Printing the area and perimeter
+    print(f"Area: {area}")
+    print(f"Perimeter: {perimeter}")
