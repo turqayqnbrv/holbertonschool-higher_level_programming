@@ -1,21 +1,17 @@
 #!/usr/bin/python3
-"""
-===================================
-module with class BaseGeometry
-===================================
-"""
+"""defines class BaseGeomtry
+with public instance methods for area and integer validation"""
 
 
 class BaseGeometry:
-    """BaseGeometry class"""
-
+    """class with public instance method to raise exception
+    and public instance method to validate integer"""
     def area(self):
-        """method for calculated area"""
+        """raises exception that area method is not implemented"""
         raise Exception("area() is not implemented")
 
     def integer_validator(self, name, value):
-        """Method for validate if a num is integer"""
-
+        """validates integer"""
         if type(value) is not int:
             raise TypeError("{} must be an integer".format(name))
         if value <= 0:
