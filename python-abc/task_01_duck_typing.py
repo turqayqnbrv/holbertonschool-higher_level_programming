@@ -1,11 +1,7 @@
 #!/usr/bin/python3
 """Module containing abstract Shape class and its implementations."""
-
 from abc import ABC, abstractmethod
 import math
-
-
-__all__ = ['Shape', 'Circle', 'Rectangle', 'shape_info']
 
 
 class Shape(ABC):
@@ -26,19 +22,15 @@ class Circle(Shape):
     """Circle class that inherits from Shape."""
 
     def __init__(self, radius):
-        """Initialize Circle with a radius.
-
-        Args:
-            radius: The radius of the circle.
-        """
+        """Initialize Circle with a radius."""
         self.radius = radius
 
     def area(self):
         """Calculate and return the area of the circle."""
-        return math.pi * self.radius ** 2
+        return math.pi * (self.radius ** 2)
 
     def perimeter(self):
-        """Calculate and return the perimeter (circumference) of the circle."""
+        """Calculate and return the perimeter."""
         return 2 * math.pi * self.radius
 
 
@@ -46,12 +38,7 @@ class Rectangle(Shape):
     """Rectangle class that inherits from Shape."""
 
     def __init__(self, width, height):
-        """Initialize Rectangle with width and height.
-
-        Args:
-            width: The width of the rectangle.
-            height: The height of the rectangle.
-        """
+        """Initialize Rectangle with width and height."""
         self.width = width
         self.height = height
 
@@ -60,15 +47,15 @@ class Rectangle(Shape):
         return self.width * self.height
 
     def perimeter(self):
-        """Calculate and return the perimeter of the rectangle."""
+        """Calculate and return the perimeter."""
         return 2 * (self.width + self.height)
 
 
 def shape_info(shape):
-    """Print the area and perimeter of a shape using duck typing.
-
-    Args:
-        shape: An object with area() and perimeter() methods.
-    """
-    print(f"Area: {shape.area()}")
-    print(f"Perimeter: {shape.perimeter()}")
+    """Print the area and perimeter of a shape using duck typing."""
+    try:
+        print("Area: {}".format(shape.area()))
+        print("Perimeter: {}".format(shape.perimeter()))
+    except (AttributeError, TypeError):
+        # This handles cases where the object is not a 'duck'
+        return
